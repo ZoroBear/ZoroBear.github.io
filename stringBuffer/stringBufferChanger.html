@@ -1,0 +1,418 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en"><head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>StringBufferChanger</title>
+		<link rel="icon" type="image/png" href="../plugins/icon/favicon.png" />
+	<style type="text/css">/* Variables */
+
+:root {
+
+	/* Colors */
+
+	/*
+	 * Colors are inherited from themes
+	 */
+
+	--color__lang__js: #F0DB4E;
+	--color__lang__react: #009bb7;
+	--color__lang__python: linear-gradient(135deg, #56a9ec 0%,#56a9ec 50%,#ffe05d 50%,#ffe05d 100%);
+	--color__lang__interview: #5100ff;
+	--color__lang__php: #AEB2D5;
+	--color__lang__css: #2CAAE1;
+	--color__lang__ruby: #B60D01;
+	--color__lang__ramda: #884499;
+	--color__lang__cpp: #1F6AA4;
+
+	--color__primary: var(--color__gray);
+	--color__secondary: var(--color__orange);
+	--color__secondary--light: var(--color__orange--light);
+
+	/* Body */
+
+	--bg__color: var(--color__gray--dark);
+	--drop-shadow__regular: 10px 0 37.6px 2.4px rgba(0, 0, 0, 0.1);
+	--drop-shadow__inverse: -10px 0 37.6px 2.4px rgba(0, 0, 0, 0.1);
+
+	/* Fonts */
+
+	--font__color--primary: var(--color__white);
+	--font__color--dark: var(--color__white--dark);
+	--font__color--black: var(--color__gray--dark);
+	--font__color--secondary: var(--color__orange);
+	--font__color--secondary--light: var(--color__orange--light);
+
+	--font__size--xxs: 12px;
+	--font__size--xs: 14px;
+	--font__size--s: 16px;
+	--font__size--m: 18px;
+	--font__size--l: 20px;
+	--font__size--xl: 22px;
+	--font__size--xxl: 24px;
+
+	/* Buttons */
+
+	--button__height: 32px;
+	--button__width--min: 144px;
+	--button__width--max: calc(var(--button__width--min)*2);
+	--button__drop-shadow: 0 10px 20px 2px rgba(0,0,0,0.1);
+	--filter__button--icon: none;
+
+	/* Toaster */
+
+	--toaster__bg: var(--color__white);
+	--toaster__font: var(--color__gray--dark);
+
+	/* CodeBlock */
+
+	--bg__code--block: var(--color__gray);
+
+	/* Border */
+
+	--color__border: var(--color__gray--light);
+
+	/* Animations */
+
+	--animation__slide_in--up: slide-in-up 1s;
+	--animation__slide_in--up__regular: slide-in-up-regular 1s;
+
+	/* stylelint-disable */
+
+	--animation__pulse--1: pulse-1 1.5s cubic-bezier(0.075, 0.820, 0.165, 1.000) infinite;
+	--animation__pulse--2: pulse-2 1.5s cubic-bezier(0.075, 0.820, 0.165, 1.000) .25s infinite;
+
+	--animation__slide_in--left: slide-in-blurred-left 0.1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+	--animation__slide_in--right: slide-in-blurred-right 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+
+	--animation__fade_in: fade-in 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	--animation__fade_out: fade-out 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+
+	--animation__menu_open: menu-open 0.4s cubic-bezier(0.550, 0.055, 0.675, 0.190) both;
+	--animation__menu_close: menu-close 0.4s cubic-bezier(0.550, 0.055, 0.675, 0.190) both;
+
+	/* stylelint-enable */
+}
+
+/* Global */
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+	margin: 0;
+	min-height: 100vh;
+	padding: 0;
+	font-family: 'Roboto Mono', 'source-code-pro', 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background: var(--bg__color);
+	font-weight: 500;
+	font-size: var(--font__size--xxl);
+	color: var(--font__color--primary);
+}
+
+code {
+	font-family: 'Roboto Mono', 'source-code-pro', 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;
+}
+
+a {
+	text-decoration: none;
+	color: var(--font__color--primary);
+}
+
+/* Fontsizes */
+
+.sok-Fontsize-xxs {
+	font-size: var(--font__size--xxs);
+}
+
+.sok-Fontsize-xs {
+	font-size: var(--font__size--xs);
+}
+
+.sok-Fontsize-s {
+	font-size: var(--font__size--s);
+}
+
+.sok-Fontsize-m {
+	font-size: var(--font__size--m);
+}
+
+.sok-Fontsize-l {
+	font-size: var(--font__size--l);
+}
+
+.sok-Fontsize-xl {
+	font-size: var(--font__size--xl);
+}
+
+.sok-Fontsize-xxl {
+	font-size: var(--font__size--xxl);
+}
+</style>
+<style type="text/css">/* Dark Theme */
+
+:root {
+	--color__white: #f0f0f7;
+	--color__white--dark: #b7b7cd;
+	--color__gray: #353740;
+	--color__gray--light: #5e5d66;
+	--color__gray--dark: #21212a;
+	--color__orange: #fe1605;
+	--color__orange--light: #fea04f;
+
+	--color__header__gradient: linear-gradient(to top, var(--color__gray--dark) 0%,#14141a 100%);
+	--color__footer__gradient: linear-gradient(to bottom, var(--color__gray--dark) 0%,#14141a 100%);
+}
+</style>
+
+<style type="text/css">
+.panel-tabs {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.panel-tabs>label {
+	order: 1;
+	display: block;
+	margin-right: 0.2rem;
+	cursor: pointer;
+	transition: background ease 0.2s;
+	padding: 2px 20px 0;
+	margin-bottom: 0;
+	color: #000;
+	height: 2em;
+	background-image: -moz-linear-gradient(90deg, rgb(211, 212, 214) 0%,
+		rgb(219, 220, 222) 43%, rgb(223, 224, 226) 100%);
+	background-image: -webkit-linear-gradient(90deg, rgb(211, 212, 214) 0%,
+		rgb(219, 220, 222) 43%, rgb(223, 224, 226) 100%);
+	background-image: -ms-linear-gradient(90deg, rgb(211, 212, 214) 0%,
+		rgb(219, 220, 222) 43%, rgb(223, 224, 226) 100%);
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.panel-tabs .panel-tab {
+	order: 99;
+	flex-grow: 1;
+	width: 100%;
+	height: calc(100vh - 1em);
+	display: none;
+	padding: 1em;
+	border-top: 1px solid #d8343a;
+}
+
+.panel-tabs input[name="tabs"] {
+	display: none;
+}
+
+.panel-tabs input[name="tabs"]:checked+label {
+	background: #d8343a;
+	border: 1px solid #d8343a;
+	border-bottom: 0;
+	color: #fff;
+    cursor: default;
+}
+
+.panel-tabs input[type="radio"]:checked+label+.panel-tab {
+	display: block;
+}
+
+.panel-tabs input[name="tabs"]+label:hover {
+	background: #959595;
+	color: #fff;
+}
+
+.panel-tabs input[name="tabs"]:checked+label:hover {
+	color: #fff;
+	background-color: #f13349;
+	border-color: #f13349;
+}
+</style>
+
+<style type="text/css">
+:root {
+	--view_width: calc(100vw - 2em);
+	--view_width_helf: calc(50vw - 3em);
+	--view_height: calc(100vh - 6em);
+	--view_height_helf: calc(50vh - 2.5em);
+	--view_height_area: calc(100vh - 9em);
+	--view_height_area_helf: calc(50vh - 4.5em);
+}
+
+.div_java {
+	float: left;
+	width: var(--view_width_helf);
+	height: var(--view_height);
+	margin: 1em;
+}
+
+.div_sql {
+	float: right;
+	width: var(--view_width_helf);
+	height: var(--view_height);
+	margin: 1em;
+}
+
+.div_java_mb {
+	width: var(--view_width);
+	height: var(--view_height_helf);
+    position: absolute;
+}
+
+.div_sql_mb {
+	width: var(--view_width);
+	height: var(--view_height_helf);
+    position: absolute;
+    top: calc(50vh + 1.5em);
+}
+
+.textarea {
+	min-width: 100%;
+	max-width: 100%;
+	width: 100%;
+	height: var(--view_height_area);
+}
+
+.div_java_mb .textarea,.div_sql_mb .textarea {
+	height: var(--view_height_area_helf);
+}
+</style>
+</head>
+<body>
+	<div class="panel-tabs">
+		<input type="radio" name="tabs" id="div_Sql" onclick="tabBookmark(this);" checked>
+		<label class="sok-Fontsize-xxs" for="div_Sql">Sql轉換器</label>
+		<div class="panel-tab">
+			<div style="text-align: center;height: 1em;">
+				<input id="string_buffer" type="text" class="input_string_buffer sok-Fontsize-m" placeholder="StringBuffer name: sbSql" spellcheck="false">
+			</div>
+			<div id="div_java">
+				<div style="text-align: center;height: 1em;">Java SQL</div>
+				<textarea id="text_java" class="textarea sok-Fontsize-m" spellcheck="false" placeholder="Java SQL"></textarea>
+			</div>
+			<div id="div_sql">
+				<div style="text-align: center;height: 1em;">DB SQL</div>
+				<textarea id="text_sql" class="textarea sok-Fontsize-m" spellcheck="false" placeholder="DB SQL"></textarea>
+			</div>
+		</div>
+		<input type="radio" name="tabs" id="div_Param" onclick="tabBookmark(this);">
+		<label class="sok-Fontsize-xxs" for="div_Param">Param轉換器</label>
+		<div class="panel-tab">
+		hi
+		</div>
+	</div>
+<script type="text/javascript" src="../plugins/jquery.min.js"></script>
+<script type="text/javascript">
+	$(window).resize(function (e) {
+		view();
+	});
+
+	var view = function () {
+		var w = $(window).innerWidth();
+		if (w <= 1024) {
+			$('#div_java').removeClass().addClass('div_java_mb');
+			$('#div_sql').removeClass().addClass('div_sql_mb');
+		} else {
+			$('#div_java').removeClass().addClass('div_java');
+			$('#div_sql').removeClass().addClass('div_sql');
+		}
+	}
+
+	$(function () {
+		view();
+		$('#text_java').keyup(change);
+		$('#text_sql').keyup(change);
+		$('#text_java').keydown(type);
+		$('#text_sql').keydown(type);
+		$('#string_buffer').keyup(changeBoth);
+	})
+
+	var type = function (e) {
+		var value = $(this).val();
+		var start = $(this).prop('selectionStart');
+		var end = $(this).prop('selectionEnd');
+		var pre = $(this).val().substr(0, start);
+		var center = $(this).val().substring(start, end);
+		var appe = $(this).val().substr(end);
+		if (e.ctrlKey && e.shiftKey && e.keyCode == 85 && start != end) { // toUpper
+			value = pre + center.toUpperCase() + appe;
+		} else if (e.ctrlKey && e.shiftKey && e.keyCode == 88 && start != end) { // toLower
+			value = pre + center.toLowerCase() + appe;
+		}
+		$(this).val(value);
+	}
+
+	var changeBoth = function () {
+		$('#text_java').keyup();
+		$('#text_sql').keyup();
+	}
+
+	var change = function () {
+		var sb = $('#string_buffer').val().trim() != '' ? $('#string_buffer').val().trim() : 'sbSql';
+		var old = $(this).val().split(/\n/);
+		old.push('');
+		var other = '';
+		var now = '';
+		if ($(this).prop('id') == 'text_java') {
+			now = changeToSql(old);
+			other = 'text_sql';
+		} else {
+			now = changeToJava(sb, old);
+			other = 'text_java';
+		}
+		$('#' + other).val(now);
+	}
+
+	var changeToSql = function (old) {
+		var now = old.reduce(function (a, b, c) {
+				var between = '';
+				if (a.trim() != '' && b.trim() != '') {
+					between = '\n';
+				}
+				if (a.trim() != '' && c == 1) {
+					a = removeSb(a.trim());
+				}
+				if (b.trim() != '') {
+					b = removeSb(b.trim());
+				}
+				return a.replace(/\t/g,'    ') + between + b.replace(/\t/g,'    ');
+			});
+		return now;
+	}
+
+	var changeToJava = function (sb, old) {
+		var now = old.reduce(function (a, b, i) {
+				var between = '';
+				if (a.trim() != '' && b.trim() != '') {
+					between = '\n';
+				}
+				if (a.trim() != '' && i == 1) {
+					a = getSb(a, sb);
+				}
+				if (b.trim() != '') {
+					b = getSb(b, sb);
+				}
+				return a + between + b;
+			});
+		return now;
+	}
+
+	var getSb = function (s, sb) {
+		return sb + '.append(" ' + s.replace(/\t/g,'    ').trimEnd() + ' ");';
+	}
+
+	var removeSb = function (s) {
+		if (s.indexOf('"') == -1) {
+			return s;
+		}
+		s = s.substring(s.indexOf("\"") + 1, s.lastIndexOf("\"") - 0);
+		var start = s.indexOf(' ') == 0 ? 1 : 0;
+		var end = s.lastIndexOf(' ') == s.length ? s.length - 1 : s.length ;
+		return s.substring(start, end);
+	}
+		
+</script>
+</body></html>
